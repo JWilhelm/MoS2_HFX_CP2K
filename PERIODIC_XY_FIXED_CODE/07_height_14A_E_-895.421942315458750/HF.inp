@@ -1,0 +1,87 @@
+&GLOBAL
+  PROJECT  MoS2
+  PRINT_LEVEL MEDIUM
+  RUN_TYPE ENERGY
+  &TIMINGS
+     THRESHOLD 0.01
+  &END
+&END GLOBAL
+&FORCE_EVAL
+  METHOD Quickstep
+  &DFT
+    BASIS_SET_FILE_NAME  ../../BASIS_Mo_S_minimal
+    POTENTIAL_FILE_NAME  GTH_POTENTIALS
+    &MGRID
+      CUTOFF  300
+      REL_CUTOFF  40
+    &END MGRID
+    &QS
+      METHOD GPW
+      EPS_DEFAULT 1.0E-20
+      EPS_PGF_ORB 1.0E-20
+    &END QS
+    &SCF
+       EPS_SCF 1e-5
+       MAX_SCF 40
+       &OT
+          MINIMIZER CG
+          PRECONDITIONER FULL_SINGLE_INVERSE
+       &END OT
+       &OUTER_SCF
+          EPS_SCF 1e-5
+          MAX_SCF 50
+       &END OUTER_SCF
+       &PRINT
+          &RESTART
+          &END RESTART
+       &END PRINT
+       SCF_GUESS RESTART
+    &END SCF
+    &XC
+      &XC_FUNCTIONAL NONE
+      &END XC_FUNCTIONAL
+      &HF
+        FRACTION 1.0
+        &SCREENING
+          EPS_SCHWARZ 1.0E-6
+          SCREEN_ON_INITIAL_P TRUE
+        &END
+        &INTERACTION_POTENTIAL
+          POTENTIAL_TYPE TRUNCATED
+          CUTOFF_RADIUS  9.0
+          T_C_G_DATA t_c_g.dat
+        &END
+        &MEMORY
+          ! In MB per MPI rank.. use as much as need to get in-core operation
+          MAX_MEMORY 1000
+          EPS_STORAGE_SCALING 0.1
+        &END
+      &END
+    &END XC
+  &END DFT
+  &SUBSYS
+    &CELL
+      ABC                 3.15 3.15 14.0
+      ALPHA_BETA_GAMMA    90 90 120
+      MULTIPLE_UNIT_CELL   6 6 1
+      PERIODIC XY
+    &END CELL
+    &KIND Mo
+      BASIS_SET ORB     minimal
+      POTENTIAL         GTH-PADE-q6
+    &END KIND
+    &KIND S
+      BASIS_SET ORB     minimal
+      POTENTIAL         GTH-PADE-q6
+    &END KIND
+    &TOPOLOGY
+      MULTIPLE_UNIT_CELL   6 6 1
+    &END TOPOLOGY
+    &COORD
+Mo         0.00000        1.81865        3.07500
+S          0.00000        3.63731        1.48830
+S          0.00000        3.63731        4.66170
+    &END COORD
+  &END SUBSYS
+&END FORCE_EVAL
+
