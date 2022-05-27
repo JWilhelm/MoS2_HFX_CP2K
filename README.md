@@ -1,6 +1,6 @@
 # MoS2_HFX_CP2K
 
-6x6 Supercell of MoS2 monolayer (xy-cell: a = 18.9 A, b = 18.9 A, angle = 120 °), periodic in XY plane, HFX truncation radius 9 A
+6x6 Supercell of MoS2 monolayer (xy-cell: a = 18.9 A, b = 18.9 A, angle = 120 °), periodic in XY plane, HFX truncation radius 9 A, all calculations are contained in this git repository
 
 HFX total energy:
 
