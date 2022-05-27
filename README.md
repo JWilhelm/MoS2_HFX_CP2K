@@ -16,4 +16,4 @@ HFX total energy:
          18 A                 -895.421937 H             -895.421935 H            -895.421936 H
          20 A                 -895.421940 H             -895.421939 H            -895.421940 H
 
-As it can be seen from the table, the HFX total energy converges much faster with the cell height using the new fixed code and "PERIODIC XY" (for example 10 A height already yields milli-Hartree accuracy) compared to the old code and using "PERIODIC XY".
+As it can be seen from the table, the HFX total energy converges much faster with the cell height using the new fixed code and "PERIODIC XY" (for example 10 A height already yields milli-Hartree accuracy) compared to the old code and using "PERIODIC XY" or "PERIODIC XYZ".
